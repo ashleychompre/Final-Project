@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
+@JsonIgnoreProperties({"hibernateLazyIntializer", "handler"})
+@Table(name="fee")
 public class Fee implements Serializable{
 
     @Id
