@@ -17,44 +17,41 @@ public class GameController {
     //Creates a new game
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
-    public Game createGame(@RequestBody Game game)
-    {
+    public Game createGame(@RequestBody Game game) {
         return repo.save(game);
     }
 
     //Read by ID
     @GetMapping("/games/{id}")
     @ResponseStatus(HttpStatus.OK)
-        public Game getGameByID(@PathVariable int id){
+    public Game getGameByID(@PathVariable int id) {
         Optional<Game> value = repo.findById(id);
-        if(value.isPresent()){
+        if (value.isPresent()) {
             return value.get();
-        } else{
+        } else {
             return null;
         }
     }
 
     //Read All
     @GetMapping("/games")
-    public List<Game> getAllAuthors(){
+    public List<Game> getAllAuthors() {
         return repo.findAll();
     }
 
     //Update
     @PutMapping("/games")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateExistingAuthor(@RequestBody Game game){
+    public void updateExistingAuthor(@RequestBody Game game) {
         repo.save(game);
     }
 
     //Delete
     @DeleteMapping("/games/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteGame(@PathVariable int id){
+    public void deleteGame(@PathVariable int id) {
         repo.deleteById(id);
 
 
-
-
-
+    }
 }
