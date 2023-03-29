@@ -6,7 +6,7 @@ import com.company.gamestore.models.TShirt;
 
 @Repository
 public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
-
+    //./gdg
 
 
 }
