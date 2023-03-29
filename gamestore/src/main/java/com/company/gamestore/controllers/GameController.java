@@ -51,7 +51,5 @@ public class GameController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGame(@PathVariable int id) {
         repo.deleteById(id);
-
-
     }
 }
