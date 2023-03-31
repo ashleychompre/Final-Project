@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @RestController
@@ -17,6 +18,33 @@ public class TShirtController {
 
     @GetMapping("/tshirt/{id}")
     public TShirt getTshirtbyID(@PathVariable int id) {
+
+        Optional<TShirt> returnVal = repo.findById(id);
+        if (returnVal.isPresent()) {
+            return returnVal.get();
+        } else {
+            return null;
+        }
+    }
+
+    @GetMapping("/tshirt/{color}") //what should we return the number, a list...?
+    public List<TShirt> getTshirtbyColor(@PathVariable String color) {
+
+        List<TShirt> tshirtsListByColor = new ArrayList<>();
+        List<TShirt> everyTShirtInRepo = repo.findAll();
+
+        for(TShirt tshirt: everyTShirtInRepo)
+            if (tshirt.getColor().equals(color)) {
+                tshirtsListByColor.add(tshirt);
+            } //else {
+               // return null;
+                //shouldn't i loop to get all tshirts by colot
+            //}
+         return tshirtsListByColor;
+    }
+
+    @GetMapping("/tshirt/{id}")
+    public TShirt getTshirtbySize(@PathVariable int id) {
 
         Optional<TShirt> returnVal = repo.findById(id);
         if (returnVal.isPresent()) {
