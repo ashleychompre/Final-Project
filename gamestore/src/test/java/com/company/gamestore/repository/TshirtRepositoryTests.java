@@ -148,7 +148,7 @@ public class TshirtRepositoryTests {
     @Test
     public void getTShirtsByColor(){
         TShirt tshirt = new TShirt();
-        tshirt.setColor("black");
+        tshirt.setColor("pink");
         tshirt.setPrice(BigDecimal.valueOf(15.99));
         tshirt.setSize("Medium");
         tshirt.setQuantity(300);
@@ -163,12 +163,56 @@ public class TshirtRepositoryTests {
         tshirt2.setDescription("Disney Logo on front");
         tshirtRepo.save(tshirt2);
 
+        TShirt tshirt3 = new TShirt();
+        tshirt2.setColor("white");
+        tshirt2.setPrice(BigDecimal.valueOf(20.99));
+        tshirt2.setSize("Large");
+        tshirt2.setQuantity(2000);
+        tshirt2.setDescription("Netflix logo on front and back");
+        tshirtRepo.save(tshirt3);
+
+
+        List<TShirt> tList = tshirtRepo.findAllTShirtsByColor("white");
+        assertEquals(tList.size(), 2);
+
+        List<TShirt> tList2 = tshirtRepo.findAllTShirtsByColor("pink");
+        assertEquals(tList2.size(), 1);
+
     }
 
 
     @Test
     public void getTShirtsBySize(){
+        TShirt tshirt = new TShirt();
+        tshirt.setColor("pink");
+        tshirt.setPrice(BigDecimal.valueOf(15.99));
+        tshirt.setSize("Medium");
+        tshirt.setQuantity(300);
+        tshirt.setDescription("Leopard print graphics");
+        tshirtRepo.save(tshirt);
 
+        TShirt tshirt2 = new TShirt();
+        tshirt2.setColor("white");
+        tshirt2.setPrice(BigDecimal.valueOf(20.99));
+        tshirt2.setSize("Large");
+        tshirt2.setQuantity(1000);
+        tshirt2.setDescription("Disney Logo on front");
+        tshirtRepo.save(tshirt2);
+
+        TShirt tshirt3 = new TShirt();
+        tshirt2.setColor("white");
+        tshirt2.setPrice(BigDecimal.valueOf(20.99));
+        tshirt2.setSize("Large");
+        tshirt2.setQuantity(2000);
+        tshirt2.setDescription("Netflix logo on front and back");
+        tshirtRepo.save(tshirt3);
+
+
+        List<TShirt> tList = tshirtRepo.findAllTShirtsBySize("Large");
+        assertEquals(tList.size(), 2);
+
+        List<TShirt> tList2 = tshirtRepo.findAllTShirtsBySize("Medium");
+        assertEquals(tList2.size(), 1);
     }
 
 }
