@@ -43,15 +43,20 @@ public class TShirtController {
          return tshirtsListByColor;
     }
 
-    @GetMapping("/tshirt/{id}")
-    public TShirt getTshirtbySize(@PathVariable int id) {
+    @GetMapping("/tshirt/{size}")
+    public List<TShirt> getTshirtbySize(@PathVariable String size) {
 
-        Optional<TShirt> returnVal = repo.findById(id);
-        if (returnVal.isPresent()) {
-            return returnVal.get();
-        } else {
-            return null;
-        }
+        List<TShirt> tshirtsListBySize = new ArrayList<>();
+        List<TShirt> everyTShirtInRepo = repo.findAll();
+
+        for(TShirt tshirt: everyTShirtInRepo)
+            if (tshirt.getColor().equals(size)) {
+                tshirtsListBySize.add(tshirt);
+            } //else {
+        // return null;
+        //shouldn't i loop to get all tshirts by colot
+        //}
+        return tshirtsListBySize;
     }
 
 
