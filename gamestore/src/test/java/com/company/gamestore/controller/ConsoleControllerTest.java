@@ -1,0 +1,93 @@
+package com.company.gamestore.controller;
+
+import com.company.gamestore.controllers.ConsoleController;
+import com.company.gamestore.models.Console;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.junit.Test;
+import org.springframework.http.MediaType;
+
+import java.math.BigDecimal;
+import java.util.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(ConsoleController.class)
+public class ConsoleControllerTest {
+
+    // Wiring in the MockMvc object
+    @Autowired
+    private MockMvc mockMvc;
+
+    // ObjectMapper used to convert Java objects to JSON and vice versa
+    private ObjectMapper mapper = new ObjectMapper();
+
+    // A list of records for testing purposes
+    private List<Console> consoleList;
+
+    @Before
+    public void setUp() {
+        // Standard set up method, for instantiating test objects
+        // Don't have to do anything special for mockMvc since it's Autowired
+    }
+
+    // Testing GET /records
+    @Test
+    public void shouldReturnAllConsolesInCollection() throws Exception {
+
+        // ARRANGE
+        // Convert Java object to JSON
+        String outputJson = mapper.writeValueAsString(consoleList);
+
+        // ACT
+        mockMvc.perform(get("/consoles"))        // Perform the GET request
+                .andDo(print())              // Print results to console
+                .andExpect(status().isOk());        // ASSERT (status code is 200)
+    }
+
+    // Testing POST /records
+    @Test
+    public void shouldReturnNewConsoleOnPostRequest() throws Exception {
+
+        // ARRANGE
+        Console console = new Console();
+        console.setModel("2023");
+        console.setManufacturer("Microsoft");
+        console.setMemoryAmount("64GB");
+        console.setProcessor("Intel");
+        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setQuantity(123);
+
+        // Convert Java Object to JSON
+        String inputJson = mapper.writeValueAsString(console);
+
+        Console console2 = new Console();
+        console2.setModel("2022");
+        console2.setManufacturer("Google");
+        console2.setMemoryAmount("64GB");
+        console2.setProcessor("Intel");
+        console2.setPrice(BigDecimal.valueOf(1111));
+        console2.setQuantity(15);
+
+        String outputJson = mapper.writeValueAsString(console2);
+
+        // ACT
+        mockMvc.perform(
+                        post("/consoles")              // Perform the POST request
+                                .content(inputJson)             // Set the request body
+                                .contentType(MediaType.APPLICATION_JSON)  // Tell the server it's in JSON format
+                )
+                .andDo(print())                // Print results to console
+                .andExpect(status().isCreated());        // ASSERT (status code is 201)
+    }
+}
