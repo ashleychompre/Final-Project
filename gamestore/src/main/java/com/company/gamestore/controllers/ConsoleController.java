@@ -1,6 +1,7 @@
 package com.company.gamestore.controllers;
 
 import com.company.gamestore.models.Console;
+import com.company.gamestore.exceptions.NotFoundException;
 import com.company.gamestore.repository.ConsoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,14 +27,18 @@ public class ConsoleController {
         if (returnVal.isPresent()) {
             return returnVal.get();
         } else {
-            return null;
+            throw new NotFoundException("Consoles with that ID not found.");
         }
     }
 
     // GET route that reads consoles by manufacturer
     @GetMapping("/consoles/{manufacturer}")
     public List<Console> getConsoleByManufacturer(@PathVariable String manufacturer) {
-        return repo.findByManufacturer(manufacturer);
+        List<Console> returnVal = repo.findByManufacturer(manufacturer);
+        if (returnVal != null) {
+            return returnVal;
+        }
+        throw new NotFoundException("Consoles by that manufacturer not found.");
     }
 
     // POST route that creates a console
