@@ -1,11 +1,9 @@
 package com.company.gamestore.controllers;
-
 import com.company.gamestore.models.Game;
 import com.company.gamestore.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +19,7 @@ public class GameController {
         return repo.save(game);
     }
 
-    //Read by ID
+    //Get game by ID
     @GetMapping("/games/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Game getGameByID(@PathVariable int id) {
@@ -32,6 +30,52 @@ public class GameController {
             return null;
         }
     }
+
+    //Get games by studio
+    @GetMapping("/games/studio/{studio}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Game> getGameByStudio(@PathVariable String studio) {
+        List<Game> gameList= repo.findByStudio(studio);
+        if(gameList != null)
+        {
+            return gameList;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    //Get games by ESRB rating
+    @GetMapping("/games/ESRB/{esrb_rating}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Game> getGameByESRB(@PathVariable String esrb_rating) {
+        List<Game> gameList= repo.findByESRB(esrb_rating);
+        if(gameList != null)
+        {
+            return gameList;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    //Get game by title
+    @GetMapping("/games/title/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public Game getGameByTitle(@PathVariable String title) {
+        Game game= repo.findByTitle(title);
+        if(game !=null)
+        {
+           return game;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 
     //Read All
     @GetMapping("/games")
