@@ -14,10 +14,11 @@ import org.springframework.http.MediaType;
 
 import java.math.BigDecimal;
 import java.util.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import java.util.List;
 
@@ -55,6 +56,46 @@ public class ConsoleControllerTest {
                 .andExpect(status().isOk());        // ASSERT (status code is 200)
     }
 
+    // Testing GET console/{id}
+    @Test
+    public void shouldReturnConsoleById() throws Exception {
+        Console console = new Console();
+        console.setModel("2023");
+        console.setManufacturer("Microsoft");
+        console.setMemoryAmount("64GB");
+        console.setProcessor("Intel");
+        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setQuantity(123);
+        console.setId(2);
+
+        String outputJson = mapper.writeValueAsString(console);
+
+        mockMvc.perform(get("/consoles/2"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
+    // Testing GET console/{manufacturer}
+    @Test
+    public void shouldReturnConsoleByManufacturer() throws Exception {
+        Console console = new Console();
+        console.setModel("2023");
+        console.setManufacturer("Microsoft");
+        console.setMemoryAmount("64GB");
+        console.setProcessor("Intel");
+        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setQuantity(123);
+        console.setId(2);
+
+        String outputJson = mapper.writeValueAsString(console);
+
+        mockMvc.perform(get("/consoles/Microsoft"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
     // Testing POST /records
     @Test
     public void shouldReturnNewConsoleOnPostRequest() throws Exception {
@@ -90,4 +131,44 @@ public class ConsoleControllerTest {
                 .andDo(print())                // Print results to console
                 .andExpect(status().isCreated());        // ASSERT (status code is 201)
     }
+
+    // Testing PUT /consoles/{id}
+    @Test
+    public void shouldUpdateByIdAndReturn204StatusCode() throws Exception {
+
+        // This method returns nothing, so we're just checking for correct status code
+        // In this case, code 204, which indicates No Content
+
+        Console console = new Console();
+        console.setModel("2023");
+        console.setManufacturer("Microsoft");
+        console.setMemoryAmount("64GB");
+        console.setProcessor("Intel");
+        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setQuantity(123);
+        console.setId(2);
+
+        String inputJson = mapper.writeValueAsString(console);
+
+        mockMvc.perform(
+                        put("/consoles/2")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
+
+    // Testing DELETE /consoles/{id}
+    @Test
+    public void shouldDeleteByIdAndReturn204StatusCode() throws Exception {
+
+        // This method returns nothing, so we're just checking for correct status code
+        // In this case, code 204, which indicates No Content
+        mockMvc.perform(delete("/consoles/5"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
+
+
 }

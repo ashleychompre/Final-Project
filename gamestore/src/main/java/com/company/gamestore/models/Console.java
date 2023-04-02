@@ -28,7 +28,9 @@ public class Console implements Serializable {
 
     private int quantity;
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getId() {
         return id;
     }
