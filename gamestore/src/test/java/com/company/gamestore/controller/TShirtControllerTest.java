@@ -197,6 +197,45 @@ public class TShirtControllerTest {
     //Testing more  POSTS
 
 
+    @Test
+    public void shouldReturn422WhenPostingAnEmptySize() throws Exception {
+        TShirt tshirt = new TShirt();
+        tshirt.setColor("black");
+        tshirt.setPrice(BigDecimal.valueOf(15.99));
+        //tshirt.setSize("Medium");
+        tshirt.setQuantity(300);
+        tshirt.setDescription("Leopard print graphics");
+        tshirt.setId(345);
+
+        String inputJson = mapper.writeValueAsString(tshirt);
+
+        mockMvc.perform(
+                        post("/tshirt")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422WhenPostingAnEmptyColor() throws Exception {
+        TShirt tshirt = new TShirt();
+        tshirt.setPrice(BigDecimal.valueOf(15.99));
+        tshirt.setSize("Medium");
+        tshirt.setQuantity(300);
+        tshirt.setDescription("Leopard print graphics");
+        tshirt.setId(345);
+
+        String inputJson = mapper.writeValueAsString(tshirt);
+
+        mockMvc.perform(
+                        post("/tshirt")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
 
 
