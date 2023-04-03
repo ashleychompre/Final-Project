@@ -1,5 +1,7 @@
 package com.company.gamestore.controllers;
 
+import com.company.gamestore.exceptions.NotFoundException;
+import com.company.gamestore.models.Console;
 import com.company.gamestore.models.Game;
 import com.company.gamestore.models.TShirt;
 import com.company.gamestore.repository.TShirtRepository;
@@ -15,7 +17,10 @@ public class TShirtController {
 
     @Autowired
     TShirtRepository repo;
-
+    @GetMapping("/tshirt")
+    public List<TShirt> getallTShirts() {
+        return repo.findAll();
+    }
     @GetMapping("/tshirt/{id}")
     public TShirt getTshirtbyID(@PathVariable int id) {
 
@@ -29,7 +34,7 @@ public class TShirtController {
 
     @GetMapping("/tshirt/{color}") //what should we return the number, a list...?
     public List<TShirt> getTshirtbyColor(@PathVariable String color) {
-
+/*
         List<TShirt> tshirtsListByColor = new ArrayList<>();
         List<TShirt> everyTShirtInRepo = repo.findAll();
 
@@ -41,11 +46,19 @@ public class TShirtController {
                 //shouldn't i loop to get all tshirts by colot
             //}
          return tshirtsListByColor;
+
+ */
+
+        List<TShirt> returnVal = repo.findAllTShirtsBySize(color);
+        if (returnVal != null) {
+            return returnVal;
+        }
+        throw new NotFoundException("tshirts of that color not found");
     }
 
     @GetMapping("/tshirt/{size}")
     public List<TShirt> getTshirtbySize(@PathVariable String size) {
-
+/*
         List<TShirt> tshirtsListBySize = new ArrayList<>();
         List<TShirt> everyTShirtInRepo = repo.findAll();
 
@@ -57,6 +70,12 @@ public class TShirtController {
         //shouldn't i loop to get all tshirts by colot
         //}
         return tshirtsListBySize;
+*/
+        List<TShirt> returnVal = repo.findAllTShirtsBySize(size);
+        if (returnVal != null) {
+            return returnVal;
+        }
+        throw new NotFoundException("tshirts of that size not found");
     }
 
 
