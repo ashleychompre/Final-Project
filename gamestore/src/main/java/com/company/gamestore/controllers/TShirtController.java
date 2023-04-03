@@ -48,7 +48,6 @@ public class TShirtController {
          return tshirtsListByColor;
 
  */
-
         List<TShirt> returnVal = repo.findAllTShirtsBySize(color);
         if (returnVal != null) {
             return returnVal;
