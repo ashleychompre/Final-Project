@@ -29,4 +29,22 @@ public class ServiceLayer {
         this.tshirtRepository = tshirtRepository;
     }
 
+    public Invoice findInvoice(int id) {
+        return null;
+    }
+
+    public List<Invoice> findAllInvoices() {
+        return null;
+    }
+
+    public Invoice findInvoicebyName(String name) {
+        return null;
+    }
+
+    public Invoice saveInvoice(Invoice invoice) {
+        return null;
+    }
+
+
+
 }
