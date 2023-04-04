@@ -160,8 +160,7 @@ public class TShirtControllerTest {
     @Test
     public void shouldUpdateByIdAndReturn204StatusCode() throws Exception {
 
-        // This method returns nothing, so we're just checking for correct status code
-        // In this case, code 204, which indicates No Content
+
 
         TShirt tshirt = new TShirt();
         tshirt.setColor("black");
@@ -174,7 +173,7 @@ public class TShirtControllerTest {
         String inputJson = mapper.writeValueAsString(tshirt);
 
         mockMvc.perform(
-                        put("/tshirt/345")
+                        put("/tshirt")    //shouud therre be another slash here
                                 .content(inputJson)
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
@@ -186,8 +185,7 @@ public class TShirtControllerTest {
     @Test
     public void shouldDeleteByIdAndReturn204StatusCode() throws Exception {
 
-        // This method returns nothing, so we're just checking for correct status code
-        // In this case, code 204, which indicates No Content
+
         mockMvc.perform(delete("/tshirt/1"))
                 .andDo(print())
                 .andExpect(status().isNoContent());

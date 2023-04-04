@@ -84,9 +84,8 @@ public class InvoiceRepositoryTests {
         invoice2.setStreet("234 Mack Lane");
         invoice2.setItem_type("TShirt");
         invoice2.setCity("Atlanta");
-        invoice2.setName("John Doe");
-        invoice2.setState("NJ");
-        invoice2.setZipcode("07105");
+        invoice2.setState("GA");
+        invoice2.setZipcode("23456");
         invoice2.setQuantity(2);
         invoice2.setUnit_price(BigDecimal.valueOf(20.99));
         invoice2.setSubtotal(BigDecimal.valueOf(41.98));
@@ -101,11 +100,10 @@ public class InvoiceRepositoryTests {
         invoice3.setItem_id(12345);
         invoice3.setName("John Doe");
         invoice3.setStreet("234 Mack Lane");
-        invoice3.setItem_type("TShirt");
+        invoice3.setItem_type("Game");
         invoice3.setCity("Atlanta");
-        invoice3.setName("John Doe");
-        invoice3.setState("NJ");
-        invoice3.setZipcode("07105");
+        invoice3.setState("GA");
+        invoice3.setZipcode("23456");
         invoice3.setQuantity(2);
         invoice3.setUnit_price(BigDecimal.valueOf(20.99));
         invoice3.setSubtotal(BigDecimal.valueOf(41.98));
@@ -165,12 +163,11 @@ public class InvoiceRepositoryTests {
         Invoice invoice2 = new Invoice();
 
         invoice2.setItem_id(12345);
-        invoice2.setName("John Doe");
+        invoice2.setName("Jane Doe");
         invoice2.setStreet("234 Mack Lane");
         invoice2.setCity("Atlanta");
-        invoice2.setName("John Doe");
-        invoice2.setState("NJ");
-        invoice2.setZipcode("07105");
+        invoice2.setState("GA");
+        invoice2.setZipcode("23456");
         invoice2.setQuantity(2);
         invoice2.setUnit_price(BigDecimal.valueOf(20.99));
         invoice2.setSubtotal(BigDecimal.valueOf(41.98));
@@ -226,12 +223,11 @@ public class InvoiceRepositoryTests {
         Invoice invoice2 = new Invoice();
 
         invoice2.setItem_id(12345);
-        invoice2.setName("John Doe");
+        invoice2.setName("Jane Doe");
         invoice2.setStreet("234 Mack Lane");
         invoice2.setCity("Atlanta");
-        invoice2.setName("John Doe");
-        invoice2.setState("NJ");
-        invoice2.setZipcode("07105");
+        invoice2.setState("GA");
+        invoice2.setZipcode("23456");
         invoice2.setQuantity(2);
         invoice2.setUnit_price(BigDecimal.valueOf(20.99));
         invoice2.setSubtotal(BigDecimal.valueOf(41.98));
