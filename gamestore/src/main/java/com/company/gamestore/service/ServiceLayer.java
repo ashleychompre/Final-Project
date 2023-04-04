@@ -58,7 +58,11 @@ public class ServiceLayer {
             InvoiceViewModel ivm = buildInvoiceViewModel(invoice);
             ivmList.add(ivm);
         }
-        return ivmList;
+        if (ivmList != null) {
+            return ivmList;
+        } else {
+            throw new NotFoundException("Invoices with that Name not found.");
+        }
     }
 
     public List<InvoiceViewModel> findInvoicebyName(String name) {
