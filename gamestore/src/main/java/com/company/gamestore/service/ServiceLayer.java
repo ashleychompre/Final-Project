@@ -1,5 +1,6 @@
 package com.company.gamestore.service;
 
+import com.company.gamestore.exceptions.NotFoundException;
 import com.company.gamestore.repository.*;
 import com.company.gamestore.models.Console;
 import com.company.gamestore.models.Game;
@@ -10,6 +11,7 @@ import com.company.gamestore.models.Fee;
 import com.company.gamestore.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -21,7 +23,6 @@ public class ServiceLayer {
     private GameRepository gameRepository;
     private TShirtRepository tshirtRepository;
     private InvoiceRepository invoiceRepository;
-
     private FeeRepository feeRepository;
 
     private TaxRepository taxRepository;
@@ -39,22 +40,68 @@ public class ServiceLayer {
         this.taxRepository = taxRepository;
     }
 
-    public Invoice findInvoice(int id) {
-        return null;
+    public InvoiceViewModel findInvoice(int id) {
+        Optional<Invoice> invoice = invoiceRepository.findById(id);
+        if (invoice.isPresent()) {
+            return buildInvoiceViewModel(invoice.get());
+        } else {
+            throw new NotFoundException("Invoice with that ID not found.");
+        }
     }
 
-    public List<Invoice> findAllInvoices() {
-        return null;
+    public List<InvoiceViewModel> findAllInvoices() {
+        List<Invoice> invoiceList = invoiceRepository.findAll();
+
+        List<InvoiceViewModel> ivmList = new ArrayList<>();
+
+        for (Invoice invoice : invoiceList) {
+            InvoiceViewModel ivm = buildInvoiceViewModel(invoice);
+            ivmList.add(ivm);
+        }
+        if (ivmList != null) {
+            return ivmList;
+        } else {
+            throw new NotFoundException("Invoices with that Name not found.");
+        }
     }
 
-    public Invoice findInvoicebyName(String name) {
-        return null;
+    public List<InvoiceViewModel> findInvoicebyName(String name) {
+        List<Invoice> invoiceList = invoiceRepository.findByName(name);
+
+        List<InvoiceViewModel> ivmList = new ArrayList<>();
+
+        for (Invoice invoice : invoiceList) {
+            InvoiceViewModel ivm = buildInvoiceViewModel(invoice);
+            ivmList.add(ivm);
+        }
+        if (ivmList != null) {
+            return ivmList;
+        } else {
+            throw new NotFoundException("Invoices with that Name not found.");
+        }
     }
 
+    @Transactional
+    public InvoiceViewModel saveInvoice(InvoiceViewModel invoiceViewModel) {
+        Invoice i = new Invoice();
 
-    public Invoice saveInvoice(Invoice invoice) {
+        i.setItem_type(invoiceViewModel.getItem_type());
+        i.setCity(invoiceViewModel.getCity());
+        i.setState(invoiceViewModel.getState());
+        i.setName(invoiceViewModel.getName());
+        i.setTax(invoiceViewModel.getTax());
+        i.setQuantity(invoiceViewModel.getQuantity());
+        i.setSubtotal(invoiceViewModel.getSubtotal());
+        i.setTotal(invoiceViewModel.getTotal());
+        i.setProcessing_fee(invoiceViewModel.getProcessing_fee());
+        i.setUnit_price(invoiceViewModel.getUnit_price());
+        i.setZipcode(invoiceViewModel.getZipcode());
+        i.setStreet(invoiceViewModel.getStreet());
 
-        return null;
+        i = invoiceRepository.save(i);
+        invoiceViewModel.setId(i.getId());
+
+        return invoiceViewModel;
     }
 
     private InvoiceViewModel buildInvoiceViewModel(Invoice invoice) {
@@ -103,7 +150,6 @@ public class ServiceLayer {
         ivm.setTotal(total);
 
         return ivm;
-
 
     }
 
