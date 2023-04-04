@@ -12,7 +12,7 @@ import java.util.Objects;
 @Table(name="invoice")
 public class Invoice implements Serializable {
     @Id
-    @Column(name="invoice_id " )
+    @Column(name="invoice_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 

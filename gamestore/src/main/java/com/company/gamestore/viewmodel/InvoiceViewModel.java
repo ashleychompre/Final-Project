@@ -1,6 +1,4 @@
 package com.company.gamestore.viewmodel;
-
-
 import java.math.BigDecimal;
 import java.util.Objects;
 
