@@ -1,6 +1,4 @@
-package com.company.gamestore.controller;
-
-import com.company.gamestore.controllers.TShirtController;
+package com.company.gamestore.controllers;
 import com.company.gamestore.models.TShirt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -14,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -25,9 +24,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TShirtController.class)
-
+//@ExtendWith(SpringExtension.class)
 public class TShirtControllerTest {
 
+//    @MockBean
+//    private TShirtRepository tShirtRepository;
     @Autowired
     private MockMvc mockMvc;
 
@@ -37,12 +38,15 @@ public class TShirtControllerTest {
    private List<TShirt> tShirtList;
 
    @Before
-   public void setUp() {}
+   public void setUp() {
+       //tShirtRepository.deleteAll();
+   }
 
 
     //Testing GET
     @Test
     public void shouldReturnAllTShirtsInCollection() throws Exception {
+
 
         // ARRANGE
         // Convert Java object to JSON

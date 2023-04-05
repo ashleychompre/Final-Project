@@ -1,7 +1,5 @@
-package com.company.gamestore.controller;
+package com.company.gamestore.controllers;
 
-import com.company.gamestore.controllers.ConsoleController;
-import com.company.gamestore.models.Console;
 import com.company.gamestore.models.Invoice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

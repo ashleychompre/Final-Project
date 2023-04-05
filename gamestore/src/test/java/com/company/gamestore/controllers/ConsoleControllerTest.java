@@ -1,6 +1,5 @@
-package com.company.gamestore.controller;
+package com.company.gamestore.controllers;
 
-import com.company.gamestore.controllers.ConsoleController;
 import com.company.gamestore.models.Console;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 
 import java.math.BigDecimal;
-import java.util.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

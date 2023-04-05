@@ -19,12 +19,18 @@ import java.util.*;
 @Component
 public class ServiceLayer {
 
+    @Autowired
     private ConsoleRepository consoleRepository;
+    @Autowired
     private GameRepository gameRepository;
+    @Autowired
     private TShirtRepository tshirtRepository;
+    @Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
     private FeeRepository feeRepository;
 
+    @Autowired
     private TaxRepository taxRepository;
 
 
