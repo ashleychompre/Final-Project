@@ -13,15 +13,15 @@ public class Fee implements Serializable{
 
     @Id
     @Column(name="product_type")
-    private String product_type;
+    private String productType;
     private BigDecimal fee;
 
     public String getProductType() {
-        return product_type;
+        return productType;
     }
 
     public void setProductType(String product_type) {
-        this.product_type = product_type;
+        this.productType = product_type;
     }
 
     public BigDecimal getFee() {
@@ -37,18 +37,18 @@ public class Fee implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Fee fee1 = (Fee) o;
-        return product_type.equals(fee1.product_type) && fee.equals(fee1.fee);
+        return productType.equals(fee1.productType) && fee.equals(fee1.fee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product_type, fee);
+        return Objects.hash(productType, fee);
     }
 
     @Override
     public String toString() {
         return "Fee{" +
-                "product_type='" + product_type + '\'' +
+                "product_type='" + productType + '\'' +
                 ", fee=" + fee +
                 '}';
     }

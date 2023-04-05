@@ -52,8 +52,8 @@ public Game findGameByTitle(@Argument String title){
 
 //    Get a Game by ESRB rating
 @QueryMapping
-public List<Game> findGameByESRB(@Argument String esrb_rating){
-    List<Game> gameList= gameRepository.findByESRB(esrb_rating);
+public List<Game> findGameByESRB(@Argument String esrbRating){
+    List<Game> gameList= gameRepository.findByesrbRating(esrbRating);
     if(gameList != null)
     {
         return gameList;

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
-    //./gdg
+
 List<TShirt> findAllTShirtsByColor(String color);
 List<TShirt> findAllTShirtsBySize(String size);
 

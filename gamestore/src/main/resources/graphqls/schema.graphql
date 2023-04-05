@@ -1,7 +1,7 @@
 type Game {
     id: ID
     title: String!
-    esrb_rating: String!
+    esrbRating: String!
     description: String!
     price: Float!
     studio: String!
@@ -59,7 +59,7 @@ type Query{
     findGameById(id:ID): Game
     findConsoleById(id:ID): Console
     findGameByTitle(title:String):Game
-    findGameByESRB(esrb_rating:String):Game
+    findGameByESRB(esrbRating:String):Game
     findGameByStudio(studio:String):Game
     findConsoleByManufacturer(manufacturer:String):Console
 }

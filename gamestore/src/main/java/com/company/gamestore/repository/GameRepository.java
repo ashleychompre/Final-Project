@@ -12,7 +12,7 @@ public interface GameRepository extends JpaRepository <Game,Integer> {
 
     List<Game> findByStudio(String studio);
 
-    List<Game> findByESRB(String esrb_rating);
+    List<Game> findByesrbRating(String esrbRating);
 
     Game findByTitle(String title);
 }
