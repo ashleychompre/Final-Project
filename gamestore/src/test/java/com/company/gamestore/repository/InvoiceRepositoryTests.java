@@ -1,5 +1,5 @@
 package com.company.gamestore.repository;
-
+import com.company.gamestore.repository.TShirtRepository;
 import com.company.gamestore.models.Console;
 import com.company.gamestore.models.Invoice;
 import com.company.gamestore.models.TShirt;
@@ -163,6 +163,7 @@ public class InvoiceRepositoryTests {
         Invoice invoice2 = new Invoice();
 
         invoice2.setItem_id(12345);
+        invoice2.setItem_type("T-shirt");
         invoice2.setName("Jane Doe");
         invoice2.setStreet("234 Mack Lane");
         invoice2.setCity("Atlanta");
@@ -207,6 +208,7 @@ public class InvoiceRepositoryTests {
         Invoice invoice = new Invoice();
 
         invoice.setItem_id(54321);
+        invoice.setItem_type("Game");
         invoice.setName("John Doe");
         invoice.setStreet("200 Ferry Street");
         invoice.setCity("Newark");
@@ -223,6 +225,7 @@ public class InvoiceRepositoryTests {
         Invoice invoice2 = new Invoice();
 
         invoice2.setItem_id(12345);
+        invoice2.setItem_type("Tshirt");
         invoice2.setName("Jane Doe");
         invoice2.setStreet("234 Mack Lane");
         invoice2.setCity("Atlanta");
@@ -233,12 +236,15 @@ public class InvoiceRepositoryTests {
         invoice2.setSubtotal(BigDecimal.valueOf(41.98));
         invoice2.setTax(BigDecimal.valueOf(0.07));
         invoice2.setProcessing_fee(BigDecimal.valueOf(1.98));
-        invoice2.setTotal(BigDecimal.valueOf(46.90));
+        invoice2.setTotal(BigDecimal.valueOf(46.99));
 
         invoiceRepo.save(invoice2);
 
         Optional<Invoice> foundInvoice =invoiceRepo.findById(invoice.getId());
+        assertEquals(foundInvoice.get(), invoice);
+
         Optional<Invoice> foundInvoice2 =invoiceRepo.findById(invoice2.getId());
+        assertEquals(foundInvoice2.get(), invoice2);
 
     }
 

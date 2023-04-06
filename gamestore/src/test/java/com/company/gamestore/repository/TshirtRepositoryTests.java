@@ -1,6 +1,5 @@
 package com.company.gamestore.repository;
 
-import com.company.gamestore.models.Console;
 import com.company.gamestore.models.TShirt;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TshirtRepositoryTests {
+public class TShirtRepositoryTests {
 
 
     @Autowired
@@ -164,11 +163,11 @@ public class TshirtRepositoryTests {
         tshirtRepo.save(tshirt2);
 
         TShirt tshirt3 = new TShirt();
-        tshirt2.setColor("white");
-        tshirt2.setPrice(BigDecimal.valueOf(20.99));
-        tshirt2.setSize("Large");
-        tshirt2.setQuantity(2000);
-        tshirt2.setDescription("Netflix logo on front and back");
+        tshirt3.setColor("white");
+        tshirt3.setPrice(BigDecimal.valueOf(20.99));
+        tshirt3.setSize("Large");
+        tshirt3.setQuantity(2000);
+        tshirt3.setDescription("Netflix logo on front and back");
         tshirtRepo.save(tshirt3);
 
 
@@ -200,11 +199,11 @@ public class TshirtRepositoryTests {
         tshirtRepo.save(tshirt2);
 
         TShirt tshirt3 = new TShirt();
-        tshirt2.setColor("white");
-        tshirt2.setPrice(BigDecimal.valueOf(20.99));
-        tshirt2.setSize("Large");
-        tshirt2.setQuantity(2000);
-        tshirt2.setDescription("Netflix logo on front and back");
+        tshirt3.setColor("white");
+        tshirt3.setPrice(BigDecimal.valueOf(20.99));
+        tshirt3.setSize("Large");
+        tshirt3.setQuantity(2000);
+        tshirt3.setDescription("Netflix logo on front and back");
         tshirtRepo.save(tshirt3);
 
 
