@@ -7,13 +7,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ConsoleRepositoryTests {
 
@@ -34,7 +35,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(3.99));
         console.setQuantity(123);
 
         console = consoleRepository.save(console);
@@ -52,7 +53,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(3.99));
         console.setQuantity(123);
         console = consoleRepository.save(console);
 
@@ -61,7 +62,7 @@ public class ConsoleRepositoryTests {
         console2.setManufacturer("Google");
         console2.setMemoryAmount("64GB");
         console2.setProcessor("Intel");
-        console2.setPrice(BigDecimal.valueOf(1111));
+        console2.setPrice(BigDecimal.valueOf(1.99));
         console2.setQuantity(15);
         console2 = consoleRepository.save(console2);
 
@@ -78,7 +79,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(1.99));
         console.setQuantity(123);
         console = consoleRepository.save(console);
 
@@ -87,7 +88,7 @@ public class ConsoleRepositoryTests {
         console2.setManufacturer("Google");
         console2.setMemoryAmount("64GB");
         console2.setProcessor("Intel");
-        console2.setPrice(BigDecimal.valueOf(1111));
+        console2.setPrice(BigDecimal.valueOf(3.99));
         console2.setQuantity(15);
         console2 = consoleRepository.save(console2);
 
@@ -106,7 +107,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(1.99));
         console.setQuantity(123);
         console = consoleRepository.save(console);
 
@@ -115,7 +116,7 @@ public class ConsoleRepositoryTests {
         console2.setManufacturer("Google");
         console2.setMemoryAmount("64GB");
         console2.setProcessor("Intel");
-        console2.setPrice(BigDecimal.valueOf(1111));
+        console2.setPrice(BigDecimal.valueOf(3.99));
         console2.setQuantity(15);
         console2 = consoleRepository.save(console2);
 
@@ -134,7 +135,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(1.99));
         console.setQuantity(123);
         console = consoleRepository.save(console);
 
@@ -158,7 +159,7 @@ public class ConsoleRepositoryTests {
         console.setManufacturer("Microsoft");
         console.setMemoryAmount("64GB");
         console.setProcessor("Intel");
-        console.setPrice(BigDecimal.valueOf(1000.11));
+        console.setPrice(BigDecimal.valueOf(1.99));
         console.setQuantity(123);
 
         console = consoleRepository.save(console);
